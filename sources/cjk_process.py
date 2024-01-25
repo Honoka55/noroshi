@@ -60,13 +60,12 @@ def modify_font(input_font, output_font):
 
 def italicize_font(upright_font_path):
     font = TTFont(upright_font_path)
-    slant_degree = 9
 
     head_table = font['head']
     head_table.macStyle |= 0x0002
 
     post_table = font['post']
-    post_table.italicAngle = -slant_degree
+    post_table.italicAngle = -italic_slant_degree
 
     os2_table = font['OS/2']
     os2_table.fsSelection &= ~0x0040
@@ -93,7 +92,7 @@ def italicize_font(upright_font_path):
 
         glyph_pen = TTGlyphPen(font.getGlyphSet())
         glyph = font.getGlyphSet().get(glyph_name)
-        glyph.draw(TransformPen(glyph_pen, Transform().skew(radians(slant_degree))))
+        glyph.draw(TransformPen(glyph_pen, Transform().skew(radians(italic_slant_degree))))
 
         hmtx_table[glyph_name] = (width, lsb)
 
