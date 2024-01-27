@@ -9,7 +9,7 @@ new_xAvgCharWidth = 600
 old_family_name = 'IBM Plex Mono + IBM Plex Sans JP + IBM Plex Sans TC + IBM Plex Sans KR'
 old_version_number = '2.004'
 new_family_name = 'Noroshi Code'
-new_version_number = '0.001'
+new_version_number = '0.002'
 
 
 def update_name(record, new_name, old_str=None):
@@ -21,19 +21,25 @@ def update_name(record, new_name, old_str=None):
         record.string = new_name.encode(record.getEncoding())
 
 
-if __name__ == '__main__':
+def update_os2_and_head(font, new_avg_width, new_version):
+    os2_table = font['OS/2']
+    os2_table.xAvgCharWidth = new_avg_width
+    os2_table.achVendID = 'HNK5'
+
+    head_table = font['head']
+    head_table.fontRevision = float(new_version)
+
+    return font
+
+
+def publish_noroshi_code():
     for filename in os.listdir(original_dir):
         if filename.endswith('.ttf'):
             font_path = os.path.join(original_dir, filename)
 
             font = TTFont(font_path)
 
-            os2_table = font['OS/2']
-            os2_table.xAvgCharWidth = new_xAvgCharWidth
-            os2_table.achVendID = 'HNK5'
-
-            head_table = font['head']
-            head_table.fontRevision = new_version_number
+            font = update_os2_and_head(font, new_xAvgCharWidth, new_version_number)
 
             name_table = font['name']
             for name_record in name_table.names:
@@ -54,32 +60,40 @@ if __name__ == '__main__':
                 if name_record.nameID == 11:
                     update_name(name_record, 'https://honoka55.github.io')
 
-            ttf_output_path = os.path.join(output_dir, filename.replace('IBMPlexMonoJPTCKR', new_family_name.replace(' ', '')))
-            os.makedirs(os.path.dirname(ttf_output_path), exist_ok=True)
-            font.save(ttf_output_path)
-            print(f'{ttf_output_path} saved.')
+            generate_font_files(font, output_dir, filename, 'IBMPlexMonoJPTCKR', new_family_name.replace(' ', ''))
 
-            ttf_hinted_output_dir = output_dir.replace('unhinted', 'hinted')
-            ttf_hinted_output_path = ttf_output_path.replace('unhinted', 'hinted')
-            subprocess.run(['ftcli', 'ttf', 'autohint', '-out', ttf_hinted_output_dir, ttf_output_path])
-            print(f'{ttf_hinted_output_path} saved.')
 
-            otf_output_dir = output_dir.replace('ttf', 'otf')
-            otf_output_path = ttf_output_path.replace('ttf', 'otf')
-            subprocess.run(['ftcli', 'converter', 'ttf2otf', '-out', otf_output_dir, ttf_output_path])
-            print(f'{otf_output_path} saved.')
+def generate_font_files(font, ttf_unhinted_dir, old_filename, old_prefix, new_prefix):
+    ttf_output_path = os.path.join(ttf_unhinted_dir, old_filename.replace(old_prefix, new_prefix))
+    os.makedirs(os.path.dirname(ttf_output_path), exist_ok=True)
+    font.save(ttf_output_path)
+    print(f'{ttf_output_path} saved.')
 
-            otf_hinted_output_dir = otf_output_dir.replace('unhinted', 'hinted')
-            otf_hinted_output_path = otf_output_path.replace('unhinted', 'hinted')
-            subprocess.run(['ftcli', 'otf', 'autohint', '-out', otf_hinted_output_dir, otf_output_path])
-            print(f'{otf_hinted_output_path} saved.')
+    ttf_hinted_output_dir = ttf_unhinted_dir.replace('unhinted', 'hinted')
+    ttf_hinted_output_path = ttf_output_path.replace('unhinted', 'hinted')
+    subprocess.run(['ftcli', 'ttf', 'autohint', '-out', ttf_hinted_output_dir, ttf_output_path])
+    print(f'{ttf_hinted_output_path} saved.')
 
-            woff2_output_path = otf_output_path.replace('otf', 'woff2')
-            os.makedirs(os.path.dirname(woff2_output_path), exist_ok=True)
-            compress(otf_output_path, woff2_output_path)
-            print(f'{woff2_output_path} saved.')
+    otf_output_dir = ttf_unhinted_dir.replace('ttf', 'otf')
+    otf_output_path = ttf_output_path.replace('ttf', 'otf')
+    subprocess.run(['ftcli', 'converter', 'ttf2otf', '-out', otf_output_dir, ttf_output_path])
+    print(f'{otf_output_path} saved.')
 
-            woff2_hinted_output_path = woff2_output_path.replace('unhinted', 'hinted')
-            os.makedirs(os.path.dirname(woff2_hinted_output_path), exist_ok=True)
-            compress(otf_hinted_output_path, woff2_hinted_output_path)
-            print(f'{woff2_hinted_output_path} saved.\n')
+    otf_hinted_output_dir = otf_output_dir.replace('unhinted', 'hinted')
+    otf_hinted_output_path = otf_output_path.replace('unhinted', 'hinted')
+    subprocess.run(['ftcli', 'otf', 'autohint', '-out', otf_hinted_output_dir, otf_output_path])
+    print(f'{otf_hinted_output_path} saved.')
+
+    woff2_output_path = otf_output_path.replace('otf', 'woff2')
+    os.makedirs(os.path.dirname(woff2_output_path), exist_ok=True)
+    compress(otf_output_path, woff2_output_path)
+    print(f'{woff2_output_path} saved.')
+
+    woff2_hinted_output_path = woff2_output_path.replace('unhinted', 'hinted')
+    os.makedirs(os.path.dirname(woff2_hinted_output_path), exist_ok=True)
+    compress(otf_hinted_output_path, woff2_hinted_output_path)
+    print(f'{woff2_hinted_output_path} saved.\n')
+
+
+if __name__ == '__main__':
+    publish_noroshi_code()

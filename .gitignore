@@ -1,4 +1,5 @@
 .idea/
 ibm/
 *.ipynb
-temp.*
+tmp*
+sources/__pycache__

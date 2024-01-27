@@ -3,7 +3,7 @@ import subprocess
 
 tools_directory = 'D:/MiniPrograms/字体合并补全工具-简体中文-1.1.0-windows-x64'
 base_font_directory = '../ibm/IBM-Plex-Mono'
-ext_font_directory = '../ibm/IBM-Plex-Sans-JPTCKR-mod'
+ext_font_directory = '../ibm/IBM-Plex-Sans-JPTCKR-width1200'
 output_directory = '../ibm/IBM-Plex-Mono-JPTCKR'
 
 base_fonts = [f for f in os.listdir(base_font_directory) if f.endswith('.ttf')]
@@ -15,6 +15,8 @@ if not os.path.exists(output_directory):
 for ext_font in ext_fonts:
     base_font = ext_font.replace('SansJPTCKR', 'Mono')
     base_font_path = os.path.join(base_font_directory, base_font)
+    if base_font not in base_fonts:
+        continue
     ext_font_path = os.path.join(ext_font_directory, ext_font)
     print(f'Merging font: {base_font} with {ext_font}')
 
@@ -29,6 +31,5 @@ for ext_font in ext_fonts:
     os.remove('ext.otd')
 
     print(f' Merged font: {output_font_path}.ttf')
-
 
 print('All fonts merged successfully!')

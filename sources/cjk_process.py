@@ -5,19 +5,36 @@ from fontTools.misc.transform import Transform
 from math import radians
 import os
 
-new_width = 1200
+modified_width = 1200
 italic_slant_degree = 9
 tables_to_drop = ['GSUB', 'GPOS', 'BASE']
 
 
+def get_halfwidth_glyphs(font):
+    halfwidth_glyphs = []
+    cmap_table = font['cmap']
+    unicode_map = cmap_table.getBestCmap()
+
+    for code_point, glyph_name in unicode_map.items():
+        if 0xFF61 <= code_point <= 0xFF9F or 0xFFE8 <= code_point <= 0xFFEE:
+            halfwidth_glyphs.append(glyph_name)
+
+    return halfwidth_glyphs
+
+
 def adjust_width(font):
     hmtx_table = font['hmtx']
+    halfwidth_glyphs = get_halfwidth_glyphs(font)
 
     for glyph in font.getGlyphOrder():
         width, lsb = hmtx_table[glyph]
+        if glyph in halfwidth_glyphs:
+            new_width = modified_width // 2
+        else:
+            new_width = modified_width
         offset = (new_width - width) // 2
         hmtx_table[glyph] = (new_width, lsb + offset)
-    print(f'\tAll glyphs adjusted to width {new_width}.')
+    print(f'\tAll glyph widths adjusted.')
 
     return font
 
@@ -114,7 +131,7 @@ if __name__ == "__main__":
     for font_name in os.listdir(input_dir):
         if font_name.endswith('.ttf'):
             input_font_path = os.path.join(input_dir, font_name)
-            output_dir = input_dir + '-mod'
+            output_dir = input_dir + f'-width{modified_width}'
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
             output_font_path = os.path.join(output_dir, font_name)
