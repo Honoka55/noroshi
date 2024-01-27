@@ -1,14 +1,16 @@
 # Noroshi
 
-Noroshi(노로시)는 [IBM Plex 글꼴](https://github.com/IBM/plex)에서 派生된 CJK를 支援하는 固定幅 글꼴 패밀리입니다.
+Noroshi(노로시)는 [IBM Plex 글꼴](https://github.com/IBM/plex)에서 派生된 CJK 文字를 支援하는 固定幅 글꼴입니다.
 
 ## 特徵
 
-Noroshi Code(노로시 코드)는 IBM Plex Mono 및 IBM Plex Sans의 CJK 現地化 버전을 統合하여 西洋文字와 CJK 文字(漢字 및 한글 等)의 調和로운 1:2 比率配置를 實現합니다. 現在 테스트 中이며, 피드백은 이슈를 通해 歡迎합니다.
+Noroshi는 Noroshi Code(노로시코드)와 Noroshi Mono(노로시모노)의 2個의 글꼴 集合을 包含하고 있습니다. 모두 西洋 文字와 CJK 文字(漢字 및 한글 等)의 調和로운 1:2 比率 配置를 維持하고 있습니다. 現在 테스트 中이며, 이슈를 通해 피드백을 歡迎하고 있습니다.
 
-알려진 問題點으로는 簡體字의 支援이 不完全한 것이 包含되어 있으며, 이에 對한 업데이트는 2024年 2月에 IBM Plex Sans SC가 出市될 때 豫定되어 있으며, 該當 버전에서는 G 소스의 字形가 優先되는 버전도 出市될 豫定입니다. 또한, 元來의 글꼴이 [制限되어 있기](https://github.com/IBM/plex/issues/276) 때문에 그리스 文字(π 除外)는 一時的으로 CJK/全角幅에 따라 表示되는 問題도 있습니다.
+Noroshi Code는 IBM Plex Mono 및 IBM Plex Sans의 CJK 現地化 버전을 統合하여 600유닛의 IBM Plex Mono의 西洋 文字에 맞추기 爲해 CJK 文字의 幅을 1200으로 調整하고 있습니다. IBM Plex에서 8個의 加重値를 갖추고 있습니다. 元來의 글꼴이 [制限되어 있다](https://github.com/IBM/plex/issues/276) 때문에 그리스 文字(π 除外)는 一時的으로 CJK/全角幅을 따르고 있습니다.
 
-**注意: Windows 使用者:** Windows 글꼴 뷰어에서 OTF 形式의 글꼴 미리보기가 正常이 아닐 수 있지만, 使用中인 글꼴은 普通대로 使用할 수 있으니 安心하세요.
+Noroshi Mono는 幅 500의 [Iosevka](https://github.com/be5invis/Iosevka)를 導入하여 보다 콤팩트한 表示를 實現하고 있습니다. 西洋 文字와 CJK 文字 間에 視覺的 一貫性을 維持하기 爲해 5個의 加重値를 維持하고 있습니다.
+
+두 글꼴 集合 모두 現時點에서는 簡體字의 支援이 不完全합니다. IBM Plex Sans SC가 出市되는 대로 업데이트가 豫定되어 있습니다. Windows 폰트 뷰어에서는 OTF 形式의 폰트가 異常한 미리보기를 보일 수 있지만, 通常的인 使用에는 影響을 주지 않기 때문에 安心하시기 바랍니다.
 
 ## 빌드方法
 

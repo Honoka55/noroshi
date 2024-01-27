@@ -1,18 +1,22 @@
 # Noroshi
 
-Noroshi is a monospaced font family designed to support CJK (Chinese, Japanese and Korean) characters, derived from the [IBM Plex typeface](https://github.com/IBM/plex).
+Noroshi is a monospaced font designed to support CJK (Chinese, Japanese and Korean) characters, derived from the [IBM Plex typeface](https://github.com/IBM/plex).
+
+![Preview](preview.png)
 
 ## Features
 
-Noroshi Code incorporates characters from IBM Plex Mono and IBM Plex Sans CJK localized versions, achieving a harmonious 1:2 ratio alignment between Western and CJK characters. It is currently undergoing testing and feedback is welcome through issue submissions.
+Noroshi now includes two distinct families: Noroshi Code and Noroshi Mono, both maintaining a harmonious 1:2 ratio alignment between Western and CJK characters. It is currently undergoing testing and feedback is welcome through issue submissions.
 
-Known issues include incomplete support for simplified Chinese characters, with an upcoming update scheduled for February 2024, coinciding with the publication of IBM Plex Sans SC. A G-source glyph prioritized version will also be released at that time. Another issue is that the Greek alphabets, excluding π, temporarily follow CJK/full-width width due to [limited support](https://github.com/IBM/plex/issues/276) in the original font.
+Noroshi Code incorporates characters from IBM Plex Mono and IBM Plex Sans CJK localized versions, adjusting CJK character width to 1200 units to match the 600-unit width of IBM Plex Mono’s Western characters. It features all eight weights from the original IBM Plex series. The Greek alphabets, excluding π, temporarily follow CJK/full-width width in Noroshi Code due to [limited support](https://github.com/IBM/plex/issues/276) of IBM Plex Mono.
 
-**Note for Windows Users:** The preview of OTF format fonts in the Windows Font Viewer may appear abnormal. Please rest assured that this does not affect the normal usage of the font.
+Noroshi Mono introduces [Iosevka](https://github.com/be5invis/Iosevka) with a 500-unit width for Western characters, achieving a more compact display. It retains five weights, ensuring visual consistency across Western and CJK.
+
+Both families temporarily have incomplete support for simplified Chinese characters. An update is planned upon the release of IBM Plex Sans SC. Please be aware that the Windows Font Viewer may show abnormal previews for OTF fonts, but rest assured this doesn't affect normal usage. 
 
 ## To build
 
-Noroshi is created using the [Warcraft Font Merger](https://github.com/nowar-fonts/Warcraft-Font-Merger) in conjunction with the fonttools and foundrytools-cli Python libraries. Python scripts can be found in the [sources/](sources/) directory, and may require slight modifications for actual use.
+Noroshi is created with the [Warcraft Font Merger](https://github.com/nowar-fonts/Warcraft-Font-Merger) and the Python libraries fonttools and foundrytools-cli. Python scripts can be found in the [sources/](sources/) directory and may require slight modifications for actual use.
 
 ## License
 
