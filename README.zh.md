@@ -10,7 +10,7 @@ Noroshi Code合并了IBM Plex Mono及IBM Plex Sans的CJK本地化版本，将CJK
 
 Noroshi Mono的西文部分来自宽度为500的[Iosevka](https://github.com/be5invis/Iosevka)，显示更加紧凑。Noroshi Mono仅保留五个字重，以确保西文和CJK之间的视觉统一。
 
-Noroshi的汉字字形全部来自IBM Plex Sans已发布的CJK本地化版本，故目前对简化字的支持不完善，计划在IBM Plex Sans SC发布后进行更新。Windows字体查看器对OTF格式字体的预览可能不正常，不过请放心这并不影响字体的使用。
+Noroshi的汉字字形全部来自IBM Plex Sans已发布的CJK本地化版本，故目前对简化字的支持不完善，计划在IBM Plex Sans SC发布后进行更新。OTF版本在某些软件中可能显示不正常，若遇到此问题请换用TTF版本。
 
 ## 构建
 

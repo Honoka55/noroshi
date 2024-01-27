@@ -12,7 +12,7 @@ Noroshi Code incorporates characters from IBM Plex Mono and IBM Plex Sans CJK lo
 
 Noroshi Mono introduces [Iosevka](https://github.com/be5invis/Iosevka) with a 500-unit width for Western characters, achieving a more compact display. It retains five weights, ensuring visual consistency across Western and CJK.
 
-Both families temporarily have incomplete support for simplified Chinese characters. An update is planned upon the release of IBM Plex Sans SC. Please be aware that the Windows Font Viewer may show abnormal previews for OTF fonts, but rest assured this doesn't affect normal usage. 
+Both families temporarily have incomplete support for simplified Chinese characters. An update is planned upon the release of IBM Plex Sans SC. Please be aware that the OTF version may display incorrectly in some software. If this occurs, please use the TTF version.
 
 ## To build
 
