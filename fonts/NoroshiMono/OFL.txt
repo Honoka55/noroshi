@@ -1,6 +1,6 @@
 Copyright (c) 2024 Honoka55, with Reserved Font Name "Noroshi".
-Portions Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
 Portions Copyright (c) 2015-2022, Renzhi Li (aka. Belleve Invis, belleve@typeof.net).
+Portions Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
 Portions Copyright (c) 2014, 2015 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'.
 Portions Copyright (c) 2012 Google Inc.
 
